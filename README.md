@@ -2,7 +2,7 @@
 
 This application is built so users can find events in their locations. It will be using React, and will be built using TDD.
 
-# Feature 2: Show and Hide Event Details
+## Feature 2: Show and Hide Event Details
 
 As a user, I would like to be able to display and collapse event details so I can see more or less information depending on my preference.
 
@@ -21,7 +21,7 @@ As a user, I would like to be able to display and collapse event details so I ca
   - When the user clicks on the expanded details
   - Then the details will collapse again
 
-# Feature 3: Specify number of Events
+## Feature 3: Specify number of Events
 
 As a user I should be able to choose the number of events I want to see
 
@@ -36,7 +36,7 @@ As a user I should be able to choose the number of events I want to see
   - Then the specified count of events will display
 
 
-# Feature 4 : Use App even when offline
+## Feature 4 : Use App even when offline
 
 As a user I would like to be able to access events even when offline
 
@@ -49,6 +49,17 @@ As a user I would like to be able to access events even when offline
   - Given the user has no internet
   - When they want to change location or information
   - Then an error is diplayed
+
+## Feature 5: Data Visualization
+
+As a user I would like to see charts with the number of upcoming events in my city
+
+- Scenario 1: Show chart with number of events
+  - Given the user is on the main page
+  - When they want to see upcoming events
+  - Then the user will see a chart with the upcoming events
+
+
 
 
 
