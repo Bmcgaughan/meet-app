@@ -22,6 +22,7 @@ class CitySearch extends Component {
     this.setState({
       query: suggestion,
     });
+    this.props.updateEvents(suggestion);
   };
 
   render() {
@@ -42,7 +43,7 @@ class CitySearch extends Component {
               {suggestion}
             </li>
           ))}
-          <li key="all">
+          <li onClick={() => this.handleItemClicked('all')} key="all">
             <b>See all Cities</b>
           </li>
         </ul>
