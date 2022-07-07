@@ -12,21 +12,6 @@ const checkToken = async (accessToken) => {
   return result;
 };
 
-//clearn URL
-const removeQuery = () => {
-  if (window.history.pushState && window.location.pahtname) {
-    const newurl =
-      window.location.protocol +
-      '//' +
-      window.location.host +
-      window.location.pathname;
-    window.history.pushState('', '', newurl);
-  } else {
-    const newurl = window.location.protocol + '//' + window.location.host;
-    window.history.pushState('', '', newurl);
-  }
-};
-
 const getToken = async (code) => {
   try {
     const encodeCode = encodeURIComponent(code);
@@ -62,13 +47,15 @@ export const getEvents = async () => {
   }
 
   const token = await getAccessToken();
+  console.log(token);
+
   if (token) {
     removeQuery();
     const url =
       `https://k3676qtod7.execute-api.us-east-1.amazonaws.com/dev/api/get-events` +
       '/' +
       token;
-
+    console.log('getEvents URL: ', url);
     const results = await axios.get(url);
 
     if (results.data) {
@@ -89,6 +76,7 @@ export const getAccessToken = async () => {
     await localStorage.removeItem('access_token');
     const searchParams = new URLSearchParams(window.location.search);
     const code = await searchParams.get('code');
+    console.log('code: ', code);
 
     if (!code) {
       const results = await axios.get(
@@ -100,4 +88,21 @@ export const getAccessToken = async () => {
     return code && getToken(code);
   }
   return accessToken;
+};
+
+//clearn URL
+const removeQuery = () => {
+  if (window.history.pushState && window.location.pahtname) {
+    const newurl =
+      window.location.protocol +
+      '//' +
+      window.location.host +
+      window.location.pathname;
+    console.log(newurl);
+    window.history.pushState('', '', newurl);
+  } else {
+    const newurl = window.location.protocol + '//' + window.location.host;
+    console.log(newurl);
+    window.history.pushState('', '', newurl);
+  }
 };
