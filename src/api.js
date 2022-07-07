@@ -12,6 +12,7 @@ const checkToken = async (accessToken) => {
   return result;
 };
 
+//clearn URL
 const removeQuery = () => {
   if (window.history.pushState && window.location.pahtname) {
     const newurl =
