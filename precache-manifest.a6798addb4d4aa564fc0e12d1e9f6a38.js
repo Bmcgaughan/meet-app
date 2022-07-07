@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/meet-app/static/js/runtime~main.d5b34db6.js"
   },
   {
-    "revision": "cd2ad970658f0f4f2b23edb67d28a248",
+    "revision": "3d5bc19b3d974ba2810d1d07e03d0d13",
     "url": "/meet-app/index.html"
   }
 ];
