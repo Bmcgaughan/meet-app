@@ -48,7 +48,6 @@ export const getEvents = async () => {
 
   const token = await getAccessToken();
 
-
   if (token) {
     removeQuery();
     const url =
@@ -89,7 +88,7 @@ export const getAccessToken = async () => {
 
 //clearn URL
 const removeQuery = () => {
-  if (window.history.pushState && window.location.pahtname) {
+  if (window.history.pushState && window.location.pathname) {
     const newurl =
       window.location.protocol +
       '//' +
