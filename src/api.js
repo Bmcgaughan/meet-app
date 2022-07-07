@@ -47,7 +47,7 @@ export const getEvents = async () => {
   }
 
   const token = await getAccessToken();
-  console.log(token);
+
 
   if (token) {
     removeQuery();
@@ -55,7 +55,6 @@ export const getEvents = async () => {
       `https://k3676qtod7.execute-api.us-east-1.amazonaws.com/dev/api/get-events` +
       '/' +
       token;
-    console.log('getEvents URL: ', url);
     const results = await axios.get(url);
 
     if (results.data) {
@@ -76,14 +75,12 @@ export const getAccessToken = async () => {
     await localStorage.removeItem('access_token');
     const searchParams = new URLSearchParams(window.location.search);
     const code = await searchParams.get('code');
-    console.log('code: ', code);
-
     if (!code) {
       const results = await axios.get(
         'https://k3676qtod7.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url'
       );
-      const { authURL } = results.data;
-      return (window.location.href = authURL);
+      const { authUrl } = results.data;
+      return (window.location.href = authUrl);
     }
     return code && getToken(code);
   }
@@ -98,11 +95,9 @@ const removeQuery = () => {
       '//' +
       window.location.host +
       window.location.pathname;
-    console.log(newurl);
     window.history.pushState('', '', newurl);
   } else {
     const newurl = window.location.protocol + '//' + window.location.host;
-    console.log(newurl);
     window.history.pushState('', '', newurl);
   }
 };
