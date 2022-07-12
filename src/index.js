@@ -5,9 +5,9 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
-import * as atatus from 'atatus-spa';
+import * as atatus from '../node_modules/atatus-spa';
 
-atatus.config('60e0074992964a84ad857756a1781ebf').install();
+atatus.config('96033949f7a84c6c9957cbcc941e8f54').install();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -26,4 +26,4 @@ serviceWorkerRegistration.unregister();
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
-atatus.notify(new Error('Test Atatus Setup'))
+atatus.notify(new Error('Test Atatus Setup'));
