@@ -5,7 +5,6 @@ import { InfoAlert } from './Alert';
 class CitySearch extends Component {
   constructor() {
     super();
-
     this.state = {
       query: '',
       suggestions: [],
@@ -36,10 +35,16 @@ class CitySearch extends Component {
     }
   };
 
+  //handling whether suggestions displays or now when input is clicked
+  handleFocus = () => {
+    this.setState({ showSuggestions: !this.state.showSuggestions });
+  };
+
+  //user clicks on a city from the list will update the Events in App.js
   handleItemClicked = (suggestion) => {
+    console.log(suggestion)
     this.setState({
       query: suggestion,
-      suggestions: [],
       infoText: '',
       showSuggestions: false,
     });
@@ -49,15 +54,15 @@ class CitySearch extends Component {
   render() {
     return (
       <div className="CitySearch">
-        <InfoAlert text={this.state.infoText} />
+        
+        <p>Search for a city:</p>
         <input
           type="text"
           className="city"
           value={this.state.query}
           onChange={this.handleInputChanged}
-          onFocus={() => {
-            this.setState({ showSuggestions: true });
-          }}
+          onFocus={() => this.handleFocus()}
+          ref={this.clickRef}
         />
         <ul
           className="suggestions"
@@ -75,6 +80,7 @@ class CitySearch extends Component {
             <b>See all Cities</b>
           </li>
         </ul>
+        <InfoAlert alertName={'info-alert'} text={this.state.infoText} />
       </div>
     );
   }

@@ -46,6 +46,7 @@ input[type='number'] {
   flex-basis: 300px;
   max-width: 300px;
   margin: auto;
+  margin-top: 10px;
   position: relative;
 }
 
@@ -55,7 +56,7 @@ input[type='number'] {
   z-index: 2;
   align-self: center;
   margin: 0;
-  top: 43px;
+  top: 70px;
   font-size: 14px;
   box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
 }
@@ -128,9 +129,25 @@ input[type='number'] {
   font-family: sans-serif;
 }
 
-.Alert {
+.info-alert {
   position: fixed;
-  top: 5px;
+  top: 10px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.error-alert {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.error-alert p {
+  margin-top: 0;
 }
 
 .data-vis-wrapper {
