@@ -3,6 +3,7 @@ import './App.css';
 
 import EventList from './EventList';
 import CitySearch from './CitySearch';
+import { InfoAlert } from './Alert';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
 
@@ -14,6 +15,7 @@ class App extends Component {
     events: [],
     locations: [],
     numberOfEvents: 32,
+    offlineText: '',
   };
 
   componentDidMount() {
@@ -23,6 +25,14 @@ class App extends Component {
         this.setState({ events: events, locations: extractLocations(events) });
       }
     });
+
+    if (!navigator.onLine) {
+      this.setState({
+        offlineText: 'You are offline - info may not be up to date',
+      });
+    } else {
+      this.setState({ offlineText: '' });
+    }
   }
 
   componentWillUnmount() {
@@ -54,13 +64,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <InfoAlert alertName={'offline-alert'} text={this.state.offlineText} />
         <CitySearch
           locations={this.state.locations}
           updateEvents={this.updateEvents}
         />
         <NumberOfEvents updateEvents={this.updateEvents} />
         <EventList events={this.state.events} />
-        
       </div>
     );
   }

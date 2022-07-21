@@ -24,7 +24,7 @@ class CitySearch extends Component {
     if (suggestions.length === 0) {
       this.setState({
         query: value,
-        infoText: 'No city with that name - please try another',
+        infoText: 'No city with that name',
       });
     } else {
       return this.setState({
