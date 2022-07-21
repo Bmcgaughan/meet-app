@@ -82,19 +82,27 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <InfoAlert alertName={'offline-alert'} text={this.state.offlineText} />
-        <CitySearch
-          locations={this.state.locations}
-          updateEvents={this.updateEvents}
-        />
-        <NumberOfEvents updateEvents={this.updateEvents} />
-        <EventList events={this.state.events} />
-        <WelcomeScreen
-          showWelcomeScreen={this.state.showWelcomeScreen}
-          getAccessToken={() => {
-            getAccessToken();
-          }}
-        />
+        {this.state.showWelcomeScreen ? (
+          <WelcomeScreen
+            showWelcomeScreen={this.state.showWelcomeScreen}
+            getAccessToken={() => {
+              getAccessToken();
+            }}
+          />
+        ) : (
+          <div>
+            <InfoAlert
+              alertName={'offline-alert'}
+              text={this.state.offlineText}
+            />
+            <CitySearch
+              locations={this.state.locations}
+              updateEvents={this.updateEvents}
+            />
+            <NumberOfEvents updateEvents={this.updateEvents} />
+            <EventList events={this.state.events} />
+          </div>
+        )}
       </div>
     );
   }
