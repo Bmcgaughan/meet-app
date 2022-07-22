@@ -23,7 +23,6 @@ p {
   display: block;
 }
 
-
 input[type='text'],
 input[type='number'] {
   padding: 8px 6px 8px 10px;
@@ -40,7 +39,7 @@ input[type='number'] {
 }
 
 .CitySearch {
-padding-left: 50px;
+  padding-left: 50px;
 }
 
 .CitySearch p {
@@ -153,6 +152,37 @@ padding-left: 50px;
 
 .error-alert {
   position: absolute;
+}
+
+
+.top-bar {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.top-bar.top-bar-show {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.5s ease;
+}
+
+
+
+
+.input-expand {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  right: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 40px;
+  width: 40px;
+  border: black solid 1px;
+  /* background: url('../src/img/icons/arrow-down.svg'); */
+  background-repeat: no-repeat;
+  border-radius: 100px;
+  background-color: white;
 }
 
 .data-vis-wrapper {

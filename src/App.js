@@ -4,6 +4,7 @@ import './App.css';
 import WelcomeScreen from './WelcomeScreen';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
+import TopBar from './TopBar';
 import { InfoAlert } from './Alert';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
@@ -103,16 +104,7 @@ class App extends Component {
           />
         ) : (
           <div className="main-wrapper">
-            <div className="top-bar-wrapper">
-              <div className="top-bar">
-                <CitySearch
-                  locations={this.state.locations}
-                  updateEvents={this.updateEvents}
-                />
-                <NumberOfEvents updateEvents={this.updateEvents} />
-              </div>
-              <div className=""></div>
-            </div>
+            <TopBar locations={this.state.locations} updateEvents={this.updateEvents} />
             <div className="event-list-wrapper">
               <EventList events={this.state.events} />
             </div>
