@@ -20,7 +20,7 @@ class NumberOfEvents extends Component {
     if (value > 32 || value < 1) {
       this.setState({
         numberOfEvents: value,
-        errorText: 'Please enter a number between 1 and 32',
+        errorText: 'Must be between 1 and 32',
       });
     } else {
       this.setState({
@@ -35,12 +35,14 @@ class NumberOfEvents extends Component {
     return (
       <div className="numberOfEvents">
         <p>Number of Events:</p>
-        <input
-          className="event-input"
-          type="number"
-          value={this.state.numberOfEvents}
-          onChange={this.handleInputChanged}
-        ></input>
+        <div className="event-num-wrapper">
+          <input
+            className="event-input"
+            type="number"
+            value={this.state.numberOfEvents}
+            onChange={this.handleInputChanged}
+          ></input>
+        </div>
         <ErrorAlert alertName={'error-alert'} text={this.state.errorText} />
       </div>
     );

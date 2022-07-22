@@ -13,6 +13,7 @@ class CitySearch extends Component {
     };
   }
 
+
   //user typing into search box updates query state
   //will provide alert if city is not found in the list
   handleInputChanged = (event) => {
@@ -42,7 +43,7 @@ class CitySearch extends Component {
 
   //user clicks on a city from the list will update the Events in App.js
   handleItemClicked = (suggestion) => {
-    console.log(suggestion)
+    console.log(suggestion);
     this.setState({
       query: suggestion,
       infoText: '',
@@ -52,9 +53,12 @@ class CitySearch extends Component {
   };
 
   render() {
+
+    //setting default suggestions when initially rendering
+    const displaySuggestions = this.state.suggestions.length > 0 ? this.state.suggestions : this.props.locations;
+    
     return (
       <div className="CitySearch">
-        
         <p>Search for a city:</p>
         <input
           type="text"
@@ -68,7 +72,7 @@ class CitySearch extends Component {
           className="suggestions"
           style={this.state.showSuggestions ? {} : { display: 'none' }}
         >
-          {this.state.suggestions.map((suggestion) => (
+          {displaySuggestions.map((suggestion) => (
             <li
               key={suggestion}
               onClick={() => this.handleItemClicked(suggestion)}

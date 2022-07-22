@@ -9,6 +9,7 @@ import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 
 import './styles.css';
+import './App.css';
 import './nprogress.css';
 
 class App extends Component {
@@ -23,23 +24,34 @@ class App extends Component {
   async componentDidMount() {
     this.mounted = true;
     //checking if user is authenticated and if token is still valid
-    const accessToken = localStorage.getItem('access_token');
-    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
-    const searchParams = new URLSearchParams(window.location.search);
-    const code = searchParams.get('code');
+    // const accessToken = localStorage.getItem('access_token');
+    // const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    // const searchParams = new URLSearchParams(window.location.search);
+    // const code = searchParams.get('code');
 
-    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    // this.setState({ showWelcomeScreen: !(code || isTokenValid) });
 
-    if ((code || isTokenValid) && this.mounted) {
-      getEvents().then((events) => {
-        if (this.mounted) {
-          this.setState({
-            events: events,
-            locations: extractLocations(events),
-          });
-        }
-      });
-    }
+    // if ((code || isTokenValid) && this.mounted) {
+    //   getEvents().then((events) => {
+    //     if (this.mounted) {
+    //       this.setState({
+    //         events: events,
+    //         locations: extractLocations(events),
+    //       });
+    //     }
+    //   });
+    // }
+
+    getEvents().then((events) => {
+      if (this.mounted) {
+        this.setState({
+          events: events,
+          locations: extractLocations(events),
+        });
+      }
+    });
+
+    this.setState({ showWelcomeScreen: true });
 
     if (!navigator.onLine) {
       this.setState({
@@ -82,7 +94,7 @@ class App extends Component {
     }
     return (
       <div className="App">
-        {this.state.showWelcomeScreen ? (
+        {!this.state.showWelcomeScreen ? (
           <WelcomeScreen
             showWelcomeScreen={this.state.showWelcomeScreen}
             getAccessToken={() => {
@@ -90,17 +102,20 @@ class App extends Component {
             }}
           />
         ) : (
-          <div>
-            <InfoAlert
-              alertName={'offline-alert'}
-              text={this.state.offlineText}
-            />
-            <CitySearch
-              locations={this.state.locations}
-              updateEvents={this.updateEvents}
-            />
-            <NumberOfEvents updateEvents={this.updateEvents} />
-            <EventList events={this.state.events} />
+          <div className="main-wrapper">
+            <div className="top-bar-wrapper">
+              <div className="top-bar">
+                <CitySearch
+                  locations={this.state.locations}
+                  updateEvents={this.updateEvents}
+                />
+                <NumberOfEvents updateEvents={this.updateEvents} />
+              </div>
+              <div className=""></div>
+            </div>
+            <div className="event-list-wrapper">
+              <EventList events={this.state.events} />
+            </div>
           </div>
         )}
       </div>

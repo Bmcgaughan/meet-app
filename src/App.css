@@ -1,10 +1,41 @@
 .App {
+  height: 100%;
   text-align: center;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.main-wrapper {
+  background: url('../src/img/wm_back.svg');
+  min-height: 100vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.top-bar-wrapper {
+  position: relative;
+  width: 100%;
+  background: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  padding: 10px 10px 30px 10px;
+}
+
+.top-bar {
+  display: flex;
+  flex-direction: row;
+}
+
+.event-list-wrapper {
+  max-width: 60rem;
+  min-width: 75%;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
