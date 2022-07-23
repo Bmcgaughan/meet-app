@@ -45,7 +45,6 @@ input[type='number'] {
 
 .CitySearch {
   padding-top: 10px;
-  padding-left: 100px;
 }
 
 .CitySearch p {
@@ -209,7 +208,6 @@ input[type='number'] {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-left: 100px;
 }
 
 .meet-logo-wrap {
@@ -312,5 +310,18 @@ input[type='number'] {
     max-width: 50%;
     min-width: auto;
     margin: 0 auto;
+  }
+}
+
+@media (max-width: 430px) {
+  .numberOfEvents p,
+  .CitySearch p  {
+    font-size: .75rem;
+  }
+  .event-input {
+    width: 50px;
+  }
+  .city {
+    width: 150px;
   }
 }
