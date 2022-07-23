@@ -15,19 +15,19 @@ class NumberOfEvents extends Component {
   //user typing into Number of Events Box - changes Events displayed
   //error if number is not between 1-32
   handleInputChanged = (event) => {
-    const value = parseInt(event.target.value);
+    const value = event.target.value;
 
-    if (value > 32 || value < 1) {
+    if (value > 32 || value < 1 || !event.target.value) {
       this.setState({
         numberOfEvents: value,
         errorText: 'Must be between 1 and 32',
       });
     } else {
       this.setState({
-        numberOfEvents: value,
+        numberOfEvents: parseInt(value),
         errorText: '',
       });
-      this.props.updateEvents(null, value);
+      this.props.updateEvents('pass', value);
     }
   };
 

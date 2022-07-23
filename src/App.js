@@ -26,7 +26,6 @@ class App extends Component {
     //checking if user is authenticated and if token is still valid
     const accessToken = localStorage.getItem('access_token');
     const isTokenValid = (await checkToken(accessToken)).error ? false : true;
-    console.log(isTokenValid);
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get('code');
 
@@ -77,12 +76,12 @@ class App extends Component {
       this.setState({ numberOfEvents: eventCount });
     }
 
-    if (!location && !this.state.query) {
-      location = 'all';
-    } else {
-      if (location !== this.state.query) {
-        this.setState({ query: location });
-      }
+    if (location === 'pass') {
+      location = this.state.query;
+    }
+
+    if (location !== this.state.query) {
+      this.setState({ query: location });
     }
 
     getEvents().then((events) => {
