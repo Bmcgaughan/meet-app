@@ -18,6 +18,8 @@ class App extends Component {
     events: [],
     locations: [],
     numberOfEvents: 32,
+    availableEvents: 0,
+    query: '',
     showWelcomeScreen: undefined,
     offlineText: '',
   };
@@ -48,6 +50,7 @@ class App extends Component {
         this.setState({
           events: events,
           locations: extractLocations(events),
+          availableEvents: events.length,
         });
       }
     });
@@ -77,6 +80,10 @@ class App extends Component {
 
     if (!location) {
       location = 'all';
+    } else {
+      if (location !== this.state.query) {
+        this.setState({ query: location });
+      }
     }
 
     getEvents().then((events) => {
@@ -84,7 +91,7 @@ class App extends Component {
         location === 'all'
           ? events
           : events.filter((event) => event.location === location);
-
+      this.setState({ availableEvents: locationEvents.length });
       this.setState({ events: locationEvents.slice(0, eventCount) });
     });
   };
@@ -104,7 +111,14 @@ class App extends Component {
           />
         ) : (
           <div className="main-wrapper">
-            <TopBar locations={this.state.locations} updateEvents={this.updateEvents} />
+            <TopBar
+              locations={this.state.locations}
+              updateEvents={this.updateEvents}
+              query={this.state.query}
+              numEvents={this.state.numberOfEvents}
+              eventCount={this.state.availableEvents}
+              eventDisplay={this.state.events.length}
+            />
             <div className="event-list-wrapper">
               <EventList events={this.state.events} />
             </div>

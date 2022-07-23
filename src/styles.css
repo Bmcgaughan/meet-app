@@ -39,7 +39,7 @@ input[type='number'] {
 }
 
 .CitySearch {
-  padding-left: 50px;
+  padding-left: 100px;
 }
 
 .CitySearch p {
@@ -74,22 +74,33 @@ input[type='number'] {
 }
 
 .event {
+  background: white;
   padding: 10px 10px 35px;
   margin-bottom: 10px;
   text-align: left;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
   position: relative;
+  z-index: 1;
 }
 
-.details-btn {
+.show-button {
   position: absolute;
-  right: 5px;
+  font-size: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 5px;
   padding: 5px 8px;
-  border-radius: 4px;
+  border-radius: 10px;
   outline: none;
   cursor: pointer;
+  background: white;
+  transition: top ease 0.5s;
+}
+
+.show-button:hover {
+  transform: translate(-50%, -3px);
 }
 
 .name {
@@ -125,6 +136,7 @@ input[type='number'] {
 
 .event-input {
   text-align: left;
+  width: 200px;
 }
 
 .button-wrapper {
@@ -154,6 +166,15 @@ input[type='number'] {
   position: absolute;
 }
 
+.top-info {
+  padding-top: 5px;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.top-title {
+  font-size: 1.5rem;
+}
 
 .top-bar {
   visibility: hidden;
@@ -166,8 +187,29 @@ input[type='number'] {
   transition: all 0.5s ease;
 }
 
+.top-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.top-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 100px;
+}
 
+.meet-logo-wrap {
+  height: 55px;
+  width: 55px;
+}
+
+.meet-logo-wrap img {
+  width: 100%;
+  height: auto;
+}
 
 .input-expand {
   position: absolute;
@@ -183,6 +225,7 @@ input[type='number'] {
   background-repeat: no-repeat;
   border-radius: 100px;
   background-color: white;
+  z-index: 1000;
 }
 
 .data-vis-wrapper {
