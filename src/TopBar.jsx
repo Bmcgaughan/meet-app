@@ -7,11 +7,11 @@ import NumberOfEvents from './NumberOfEvents';
 
 import arrowDown from '../src/img/icons/arrow-down.svg';
 import arrowUp from '../src/img/icons/arrow-up.svg';
-import meetLogo from '../src/img/meet-app-192.png';
+import { InfoAlert } from './Alert';
 
 function TopBar(props) {
-  const [showBar, setShowBar] = React.useState('');
-  const [expander, setExpander] = React.useState(true);
+  const [showBar, setShowBar] = useState('');
+  const [expander, setExpander] = useState(false);
 
   const toggleBar = () => {
     setExpander(!expander);
@@ -21,12 +21,12 @@ function TopBar(props) {
   return (
     <div className={`top-bar-wrapper ${expander ? 'expand' : ''}`}>
       <div className="top-stick">
+        {props.offlineText && (
+          <InfoAlert alertName={'offline-alert'} text={props.offlineText} />
+        )}
         {!expander ? (
           <div className="top-info">
             <div className="top-row">
-              {/* <div className="meet-logo-wrap">
-              <img src={meetLogo}></img>
-            </div> */}
               <div className="top-col">
                 <div className="top-query-val">
                   {props.query ? props.query : 'Searching All Cities'}
@@ -45,7 +45,7 @@ function TopBar(props) {
           <NumberOfEvents updateEvents={props.updateEvents} />
         </div>
         <div className="input-expand" onClick={() => toggleBar()}>
-          <img src={expander ? arrowUp : arrowDown}></img>
+          <img src={expander ? arrowUp : arrowDown} alt="expander arrow"></img>
         </div>
       </div>
     </div>

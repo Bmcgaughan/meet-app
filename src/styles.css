@@ -1,4 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
+
+html {
+  height: 100%;
+}
+
 .App {
   text-align: center;
 }
@@ -39,6 +44,7 @@ input[type='number'] {
 }
 
 .CitySearch {
+  padding-top: 10px;
   padding-left: 100px;
 }
 
@@ -85,6 +91,10 @@ input[type='number'] {
   z-index: 1;
 }
 
+.event p {
+  padding-bottom: 10px;
+}
+
 .show-button {
   position: absolute;
   font-size: 1rem;
@@ -123,6 +133,7 @@ input[type='number'] {
 }
 
 .numberOfEvents {
+  padding-top: 10px;
   padding-left: 50px;
 }
 
@@ -155,7 +166,7 @@ input[type='number'] {
 
 .offline-alert {
   position: absolute;
-  top: 0;
+  top: -5px;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -221,7 +232,6 @@ input[type='number'] {
   height: 40px;
   width: 40px;
   border: black solid 1px;
-  /* background: url('../src/img/icons/arrow-down.svg'); */
   background-repeat: no-repeat;
   border-radius: 100px;
   background-color: white;
