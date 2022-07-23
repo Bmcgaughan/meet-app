@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './WelcomeScreen.css';
+import background from './img/wm_back.svg';
 
 function WelcomeScreen(props) {
+  const [visible, setVisible] = useState(false);
+
+  //setVisible on first render with delay
+  useEffect(() => {
+    setTimeout(() => {
+      setVisible(true);
+    }, 1000);
+  }, []);
+
   return props.showWelcomeScreen ? (
     <div className="WelcomeScreen">
-      <div className="welcome-content-wrapper">
+      <img className="welcome-background" src={background}></img>
+      <div
+        className={`welcome-content-wrapper ${visible ? 'fadeIn' : 'fadeOut'}`}
+      >
         <h1>Welcome to the Meet app</h1>
         <h4>
           Log in to see upcoming events around the world for full-stack
@@ -32,7 +45,8 @@ o.svg"
             </button>
           </div>
         </div>
-        <a className='priv-link'
+        <a
+          className="priv-link"
           href="https://bmcgaughan.github.io/meet-app/privacy.html"
           rel="nofollow noopener"
         >
