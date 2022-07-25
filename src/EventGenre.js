@@ -14,12 +14,12 @@ const EventGenre = ({ events }) => {
 
   //generating count Generes per Event
   const getData = () => {
-    const genres = ['React', 'AngularJS', 'JavaScript', 'Node', 'jQuery'];
+    const genres = ['React', 'Angular', 'JavaScript', 'Node', 'jQuery'];
 
     const data = genres.map((genre) => {
       //find count of events with genre in summary
       const value = events.filter((event) =>
-        event.summary.split(' ').includes(genre)
+        event.summary.includes(genre)
       ).length;
       return { name: genre, value };
     });
