@@ -30,7 +30,11 @@ function TopBar(props) {
             <div className="top-row">
               <div className="top-col">
                 <div className="top-query-val">
-                  {props.query ? props.query : 'Searching All Cities'}
+                  {props.query
+                    ? props.query === 'all'
+                      ? 'Searching All Cities'
+                      : props.query
+                    : 'Searching All Cities'}
                 </div>
                 <div className="top-event-count">{`${props.eventDisplay} of ${props.eventCount} Events`}</div>
               </div>
