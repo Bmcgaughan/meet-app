@@ -59,6 +59,25 @@ As a user I would like to see charts with the number of upcoming events in my ci
   - When they want to see upcoming events
   - Then the user will see a chart with the upcoming events
 
+### Dependencies
+- react ^ 18.1.0
+- react react-dom ^ 18.1.0
+- axios ^0.27.2
+- recharts ^2.1.12
+- nprogress ^0.2.0
+
+
+## Tech
+- React
+- ReCharts
+- AWS Lambda
+- OAut2 (Google)
+- Testing: Jester/Enzyme/Jest-Cucumber/Puppeteer
+
+## Authors
+
+Brian McGaughan
+
 
 
 
