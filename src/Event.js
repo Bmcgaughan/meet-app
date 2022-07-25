@@ -9,6 +9,12 @@ class Event extends Component {
     };
   }
 
+  //format date to MM/DD/YYY HH: AM/PM
+  formatDate(value) {
+    const date = new Date(value);
+    return date.toLocaleString();
+  }
+
   handleDetailClick = () => {
     this.setState({
       showDetails: !this.state.showDetails,
@@ -17,16 +23,18 @@ class Event extends Component {
 
   render() {
     const { event } = this.props;
+    const formatDate = this.formatDate(event.start.dateTime);
+
     return (
       <div className="event">
         <h1 className="summary">{event.summary}</h1>
-        <p className="start-time">{event.start.dateTime}</p>
+        <p className="start-time">{formatDate}</p>
         <p className="location">{event.location}</p>
         {this.state.showDetails && (
           <p className="description">{event.description}</p>
         )}
         <button className="show-button" onClick={this.handleDetailClick}>
-          Show Details
+          {!this.state.showDetails ? 'Show Details' : 'Hide Details'}
         </button>
       </div>
     );
