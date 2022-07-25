@@ -40,10 +40,13 @@ defineFeature(feature, (test) => {
     let AppWrapper;
     and('the user loads the page', () => {
       AppWrapper = mount(<App />);
+      AppWrapper.setState({ showWelcomeScreen: false });
+      AppWrapper.update();
     });
 
     when('the user changes the number of events to display', () => {
       AppWrapper.update();
+      AppWrapper.find('.input-expand').simulate('click');
       AppWrapper.find('.event-input').simulate('change', {
         target: { value: 1 },
       });
@@ -51,6 +54,7 @@ defineFeature(feature, (test) => {
 
     then('the number of events to display is changed to the new number', () => {
       AppWrapper.update();
+      console.log(AppWrapper.debug())
       expect(AppWrapper.find('.event')).toHaveLength(1);
     });
   });

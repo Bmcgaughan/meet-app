@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import {
+  ScatterChart,
+  Scatter,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
+
+//importing components
 import WelcomeScreen from './WelcomeScreen';
 import EventList from './EventList';
 import TopBar from './TopBar';
+import EventGenre from './EventGenre';
+
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 
 import './styles.css';
@@ -21,9 +34,10 @@ class App extends Component {
     offlineText: '',
   };
 
+  //checking if user is authenticated and if token is still valid
+  //if not authenticated then show WelcomeScreen
   async componentDidMount() {
     this.mounted = true;
-    //checking if user is authenticated and if token is still valid
     const accessToken = localStorage.getItem('access_token');
     const isTokenValid = (await checkToken(accessToken)).error ? false : true;
     const searchParams = new URLSearchParams(window.location.search);
@@ -43,18 +57,7 @@ class App extends Component {
       });
     }
 
-    // getEvents().then((events) => {
-    //   if (this.mounted) {
-    //     this.setState({
-    //       events: events,
-    //       locations: extractLocations(events),
-    //       availableEvents: events.length,
-    //     });
-    //   }
-    // });
-
-    // this.setState({ showWelcomeScreen: true });
-
+    //if using offline populate a warning message
     if (!navigator.onLine) {
       this.setState({
         offlineText: 'You are offline - info may not be up to date',
@@ -68,6 +71,7 @@ class App extends Component {
     this.mounted = false;
   }
 
+  //function used by CitySearch and NumberOfEvents to update the events
   updateEvents = (location, eventCount) => {
     if (!eventCount) {
       eventCount = this.state.numberOfEvents;
@@ -94,6 +98,18 @@ class App extends Component {
     });
   };
 
+  //generating count of events per location
+  getData = () => {
+    const { locations, events } = this.state;
+    const data = locations.map((location) => {
+      const number = events.filter((event) => event.location === location)
+        .length;
+      const city = location.split(', ').shift();
+      return { city, number };
+    });
+    return data;
+  };
+
   render() {
     if (this.state.showWelcomeScreen === undefined) {
       return <div className="App" />;
@@ -109,6 +125,7 @@ class App extends Component {
           />
         ) : (
           <div className="main-wrapper">
+            {/* sending values to the topbar to render the CitySearch and NumberOfEvents components */}
             <TopBar
               locations={this.state.locations}
               updateEvents={this.updateEvents}
@@ -118,6 +135,38 @@ class App extends Component {
               eventDisplay={this.state.events.length}
               offlineText={this.state.offlineText}
             />
+            <div className="chart-wrapper">
+              <div className="genre-chart">
+                <EventGenre events={this.state.events} />
+              </div>
+              <div className="scatter-chart">
+                <ResponsiveContainer height={400} width={'100%'}>
+                  <ScatterChart
+                    margin={{
+                      top: 20,
+                      right: 20,
+                      bottom: 20,
+                      left: 0,
+                    }}
+                  >
+                    <CartesianGrid />
+                    <XAxis type="category" dataKey="city" name="city" />
+                    <YAxis
+                      type="number"
+                      dataKey="number"
+                      name="number of events"
+                      allowDecimals={false}
+                    />
+                    <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                    <Scatter
+                      name="Events by City"
+                      data={this.getData()}
+                      fill="#fff"
+                    />
+                  </ScatterChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
             <div className="event-list-wrapper">
               <EventList events={this.state.events} />
             </div>

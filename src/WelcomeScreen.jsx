@@ -15,7 +15,7 @@ function WelcomeScreen(props) {
 
   return props.showWelcomeScreen ? (
     <div className="WelcomeScreen">
-      <img className="welcome-background" src={background}></img>
+      <img className="welcome-background" alt='' src={background}></img>
       <div
         className={`welcome-content-wrapper ${visible ? 'fadeIn' : 'fadeOut'}`}
       >
@@ -42,6 +42,7 @@ o.svg"
               className="btn-text"
             >
               <b>Sign in with google</b>
+              
             </button>
           </div>
         </div>

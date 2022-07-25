@@ -21,6 +21,10 @@ defineFeature(feature, (test) => {
 
     when('the user opens the app', () => {
       AppWrapper = mount(<App />);
+      //update AppWrapper state
+
+      AppWrapper.setState({ showWelcomeScreen: false });
+      console.log(AppWrapper.state());
     });
 
     then('the user should see the list of upcoming events.', () => {

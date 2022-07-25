@@ -2,6 +2,7 @@ import axios from 'axios';
 import NProgress from 'nprogress';
 import { mockData } from './mock-data';
 
+//validating token if it exists
 export const checkToken = async (accessToken) => {
   const result = await fetch(
     `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
@@ -12,6 +13,8 @@ export const checkToken = async (accessToken) => {
   return result;
 };
 
+
+//sending the access code to get the access token
 const getToken = async (code) => {
   try {
     const encodeCode = encodeURIComponent(code);
@@ -39,6 +42,8 @@ export const extractLocations = (events) => {
   return locations;
 };
 
+
+//getEvents fuction used by APP.js to get the events
 export const getEvents = async () => {
   NProgress.start();
   if (window.location.href.startsWith('http://localhost')) {
@@ -46,6 +51,7 @@ export const getEvents = async () => {
     return mockData;
   }
 
+  //if user offline look for the events in localStorage
   if (!navigator.onLine) {
     const data = localStorage.getItem('lastEvents');
     NProgress.done();

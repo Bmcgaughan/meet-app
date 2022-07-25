@@ -17,6 +17,8 @@ defineFeature(feature, (test) => {
     let AppWrapper;
     when('the user loads the page', () => {
       AppWrapper = mount(<App />);
+      AppWrapper.setState({ showWelcomeScreen: false });
+      AppWrapper.update();
     });
 
     then('the event details should be hidden', () => {
@@ -33,6 +35,8 @@ defineFeature(feature, (test) => {
 
     given('the user wants to see even details', () => {
       AppWrapper = mount(<App />);
+      AppWrapper.setState({ showWelcomeScreen: false });
+      AppWrapper.update();
     });
 
     when('the user clicks the Show Event Details" button', () => {
@@ -54,22 +58,24 @@ defineFeature(feature, (test) => {
   }) => {
     let AppWrapper;
     AppWrapper = mount(<App />);
+    AppWrapper.setState({ showWelcomeScreen: false });
+    AppWrapper.update();
 
     given('the user has clicked the Show Event Details button', () => {
-        AppWrapper.update();
-        let firstEvent = AppWrapper.find('.event').at(0);
-        firstEvent.find('.show-button').simulate('click');
+      AppWrapper.update();
+      let firstEvent = AppWrapper.find('.event').at(0);
+      firstEvent.find('.show-button').simulate('click');
     });
 
     and('the user has clicked the Show Event Details button again', () => {
-        AppWrapper.update();
-        let firstEvent = AppWrapper.find('.event').at(0);
-        firstEvent.find('.show-button').simulate('click');
+      AppWrapper.update();
+      let firstEvent = AppWrapper.find('.event').at(0);
+      firstEvent.find('.show-button').simulate('click');
     });
 
     then('the event details should be hidden', () => {
-        AppWrapper.update();
-        expect(AppWrapper.find('.event .description')).toHaveLength(0);
+      AppWrapper.update();
+      expect(AppWrapper.find('.event .description')).toHaveLength(0);
     });
   });
 });

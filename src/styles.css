@@ -301,6 +301,37 @@ input[type='number'] {
   font-family: 'Roboto';
 }
 
+.chart-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.genre-chart {
+  padding-left: 100px;
+  width: 50%;
+  height: 100%;
+
+}
+
+.scatter-chart {
+  padding-right: 75px;
+  width: 50%;
+  height: 100%;
+}
+
+.recharts-responsive-container {
+  padding-top: 60px;
+}
+
+text.recharts-pie-label-text {
+  font-size: 0.9rem;
+}
+
+tspan {
+  fill: white;
+}
+
 @media only screen and (min-width: 992px) {
   .data-vis-wrapper {
     flex-direction: row;
@@ -313,15 +344,47 @@ input[type='number'] {
   }
 }
 
+@media (max-width: 770px) {
+  .chart-wrapper {
+    justify-content: space-between;
+  }
+
+  .genre-chart {
+    padding-left: 0px;
+
+  }
+
+  .scatter-chart {
+    padding-right: 0px;
+
+  }
+}
+
+
 @media (max-width: 430px) {
   .numberOfEvents p,
-  .CitySearch p  {
-    font-size: .75rem;
+  .CitySearch p {
+    font-size: 0.75rem;
   }
   .event-input {
     width: 50px;
   }
   .city {
     width: 150px;
+  }
+
+  .genre-chart {
+    padding-left: 20px;
+
+  }
+
+  .chart-wrapper {
+    flex-direction: column;
+    width: 100%;
+  }
+  .scatter-chart {
+    width: 100%;
+    padding-right: 15px;
+
   }
 }

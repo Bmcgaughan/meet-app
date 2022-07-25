@@ -1,0 +1,56 @@
+import React, { PureComponent, useState, useEffect } from 'react';
+
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+
+const EventGenre = ({ events }) => {
+  const [data, setData] = useState([]);
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#6a0dad'];
+
+  useEffect(() => {
+    console.log('fired');
+    setData(() => getData());
+  }, [events]);
+
+
+  //generating count Generes per Event
+  const getData = () => {
+    const genres = ['React', 'AngularJS', 'JavaScript', 'Node', 'jQuery'];
+
+    const data = genres.map((genre) => {
+      //find count of events with genre in summary
+      const value = events.filter((event) =>
+        event.summary.split(' ').includes(genre)
+      ).length;
+      return { name: genre, value };
+    });
+    return data;
+  };
+
+
+  return (
+    <ResponsiveContainer height={400} width={'100%'}>
+      <PieChart>
+        <Pie
+          data={data}
+          cx={200}
+          cy={200}
+          labelLine={false}
+          outerRadius={80}
+          fill="#8884d8"
+          dataKey="value"
+          label={({ name, percent }) => {
+            if (percent > 0) {
+              return `${name} ${(percent * 100).toFixed(0)}%`;
+            }
+          }}
+        >
+          {data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+      </PieChart>
+    </ResponsiveContainer>
+  );
+};
+
+export default EventGenre;

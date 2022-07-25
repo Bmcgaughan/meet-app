@@ -13,6 +13,7 @@ function TopBar(props) {
   const [showBar, setShowBar] = useState('');
   const [expander, setExpander] = useState(false);
 
+  //on click this toggles visibility of the bar
   const toggleBar = () => {
     setExpander(!expander);
     setShowBar(expander ? '' : 'top-bar-show');
