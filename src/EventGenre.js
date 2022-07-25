@@ -1,4 +1,4 @@
-import React, { PureComponent, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
@@ -7,7 +7,6 @@ const EventGenre = ({ events }) => {
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#6a0dad'];
 
   useEffect(() => {
-    console.log('fired');
     setData(() => getData());
   }, [events]);
 

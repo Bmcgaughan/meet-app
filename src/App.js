@@ -142,8 +142,7 @@ class App extends Component {
               <div className="scatter-chart">
                 <ResponsiveContainer height={400} width={'100%'}>
                   <ScatterChart
-                    width={800}
-                    height={400}
+
                     margin={{
                       top: 60,
                       right: 20,
@@ -159,7 +158,12 @@ class App extends Component {
                       name="number of events"
                       allowDecimals={false}
                     />
-                    <Tooltip cursor={{ strokeDasharray: '3 3' }}/>
+                    <Tooltip
+                      labelFormatter={() => {
+                        return '';
+                      }}
+                      cursor={{ strokeDasharray: '3 3' }}
+                    />
                     <Scatter
                       name="Events by City"
                       data={this.getData()}
